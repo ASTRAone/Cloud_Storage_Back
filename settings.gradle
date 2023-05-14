@@ -1,0 +1,4 @@
+rootProject.name = 'storage'
+include 'authentication'
+include 'application'
+
