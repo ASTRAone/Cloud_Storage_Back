@@ -13,12 +13,14 @@ public record SimpleImmutableProcessingResult<T>(T content,
         implements ProcessingResult<T> {
 
     public static <DTO> ProcessingResult<DTO> ofSuccess(DTO dto) {
-        return new SimpleImmutableProcessingResult<>(dto,
-                CommonProcessingResultStatus.SUCCESS, null);
+        return new SimpleImmutableProcessingResult<>(dto, CommonProcessingResultStatus.SUCCESS, null);
+    }
+
+    public static <DTO> ProcessingResult<DTO> ofSuccess() {
+        return new SimpleImmutableProcessingResult<>(null, CommonProcessingResultStatus.SUCCESS, null);
     }
 
     public static <DTO> ProcessingResult<DTO> ofFailed(Collection<ValidationPartResult> errors) {
-        return new SimpleImmutableProcessingResult<>(null,
-                CommonProcessingResultStatus.FAILED, errors);
+        return new SimpleImmutableProcessingResult<>(null, CommonProcessingResultStatus.FAILED, errors);
     }
 }

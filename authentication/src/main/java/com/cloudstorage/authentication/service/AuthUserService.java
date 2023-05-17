@@ -4,4 +4,6 @@ import com.cloudstorage.authentication.dto.UserCreateRequest;
 
 public interface AuthUserService {
     String create(UserCreateRequest request);
+
+    void delete(String keycloakUuid);
 }

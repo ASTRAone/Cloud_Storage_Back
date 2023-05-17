@@ -1,7 +1,5 @@
 package com.cloudstorage.common.service.impl;
 
-import lombok.AccessLevel;
-import lombok.RequiredArgsConstructor;
 import com.cloudstorage.common.exception.NotFoundException;
 import com.cloudstorage.common.mapper.api.EntityMapper;
 import com.cloudstorage.common.model.EntityModel;
@@ -14,6 +12,8 @@ import com.cloudstorage.common.validation.api.enumeration.Action;
 import com.cloudstorage.common.validation.api.initiator.ValidationInitiator;
 import com.cloudstorage.common.validation.model.SimpleValidationResult;
 import com.cloudstorage.common.validation.model.ValidationResult;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import static java.util.Objects.isNull;
@@ -74,7 +74,7 @@ public abstract class BaseCrudService<DTO, ENTITY extends EntityModel<ID>, ID> i
         return mapper.toDto(entity);
     }
 
-    private ValidationResult validate(ENTITY entity, Action action) {
+    protected ValidationResult validate(ENTITY entity, Action action) {
         return isNull(validationInitiator)
                 ? SimpleValidationResult.success()
                 : validationInitiator.initValidations(entity, action);

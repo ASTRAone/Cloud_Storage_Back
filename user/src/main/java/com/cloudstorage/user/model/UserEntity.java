@@ -1,13 +1,15 @@
 package com.cloudstorage.user.model;
 
+import com.cloudstorage.common.domain.user.User;
+import com.cloudstorage.common.model.BaseEntityModel;
+import com.cloudstorage.common.repository.converter.StringUuidConverter;
+import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import com.cloudstorage.common.domain.user.User;
-import com.cloudstorage.common.model.BaseEntityModel;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
@@ -23,6 +25,8 @@ import java.util.Objects;
 public class UserEntity extends BaseEntityModel<Long> {
     @JdbcTypeCode(SqlTypes.JSON)
     private User data;
+    @Convert(converter = StringUuidConverter.class)
+    private String keycloakUuid;
 
     @Override
     public boolean equals(Object o) {

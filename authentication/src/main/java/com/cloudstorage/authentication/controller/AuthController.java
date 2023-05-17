@@ -1,6 +1,5 @@
 package com.cloudstorage.authentication.controller;
 
-import lombok.RequiredArgsConstructor;
 import com.cloudstorage.authentication.dto.AuthResponse;
 import com.cloudstorage.authentication.dto.LoginRequest;
 import com.cloudstorage.authentication.dto.LoginResponse;
@@ -8,6 +7,7 @@ import com.cloudstorage.authentication.dto.SignupRequest;
 import com.cloudstorage.authentication.service.AuthService;
 import com.cloudstorage.authentication.utils.TokenUtils;
 import com.cloudstorage.common.processing.api.ProcessingResult;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,7 +42,7 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<ProcessingResult<LoginResponse>> signup(@RequestBody SignupRequest request) {
+    public ResponseEntity<LoginResponse> signup(@RequestBody SignupRequest request) {
         ProcessingResult<AuthResponse> authResult = authService.signup(request);
 
         if (authResult.status().isFailed()) {
@@ -50,14 +50,12 @@ public class AuthController {
                     .body(null);
         }
 
-        return ResponseEntity.ok()
-                .header("Authorization", "Bearer " + authResult.content().getAccessToken())
-                .body(null);
+        return prepareLoginResponse(authResult.content());
     }
 
     private ResponseEntity<LoginResponse> prepareLoginResponse(AuthResponse authResponse) {
         return ResponseEntity.ok()
                 .header("Authorization", "Bearer " + authResponse.getAccessToken())
-                .body(null);
+                .body(authResponse.getLoginResponse());
     }
 }

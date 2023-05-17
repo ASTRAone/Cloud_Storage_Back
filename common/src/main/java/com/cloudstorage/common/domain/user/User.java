@@ -7,6 +7,6 @@ import lombok.Data;
 public class User {
     private FIO fio;
     private Gender gender;
-    private String nickname;
+    private String email;
     private Integer age;
 }

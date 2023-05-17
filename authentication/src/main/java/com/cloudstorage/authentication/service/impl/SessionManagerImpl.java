@@ -1,11 +1,11 @@
 package com.cloudstorage.authentication.service.impl;
 
-import lombok.RequiredArgsConstructor;
 import com.cloudstorage.authentication.domain.UserSession;
 import com.cloudstorage.authentication.dto.LoginRequest;
 import com.cloudstorage.authentication.exception.UnauthorizedException;
 import com.cloudstorage.authentication.service.SessionManager;
 import com.cloudstorage.authentication.service.SessionRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,10 +14,9 @@ public class SessionManagerImpl implements SessionManager {
     private final SessionRepository sessionRepository;
 
     @Override
-    public UserSession login(LoginRequest request) {
+    public UserSession initNewSession(LoginRequest request) {
         UserSession userSession = sessionRepository.initNew();
         userSession.doLogin(request);
-        sessionRepository.store(userSession);
         return userSession;
     }
 
@@ -27,6 +26,11 @@ public class SessionManagerImpl implements SessionManager {
         userSession.doRefresh();
         sessionRepository.update(oldToken, userSession);
         return userSession;
+    }
+
+    @Override
+    public void store(UserSession userSession) {
+        sessionRepository.store(userSession);
     }
 
     private UserSession findSession(String token) {

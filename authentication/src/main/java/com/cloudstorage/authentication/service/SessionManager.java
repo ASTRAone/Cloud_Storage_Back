@@ -4,7 +4,9 @@ import com.cloudstorage.authentication.domain.UserSession;
 import com.cloudstorage.authentication.dto.LoginRequest;
 
 public interface SessionManager {
-    UserSession login(LoginRequest request);
+    UserSession initNewSession(LoginRequest request);
 
     UserSession refresh(String token);
+
+    void store(UserSession userSession);
 }

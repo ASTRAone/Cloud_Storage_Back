@@ -28,4 +28,5 @@ dependencies {
     implementation 'org.keycloak:keycloak-admin-client:21.0.1'
 
     implementation project(':common')
+    implementation project(':user-api')
 }
