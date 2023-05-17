@@ -6,7 +6,6 @@ import lombok.Data;
 @Data
 @Builder
 public class UserCreateRequest {
-    private final String email;
     private final String username;
     private final String password;
     private final String lastName;

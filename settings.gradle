@@ -1,4 +1,18 @@
 rootProject.name = 'storage'
 include 'authentication'
 include 'application'
+include 'common'
+include 'migration'
+include 'user'
+include 'user-api'
+
+
+gradle.allprojects {
+    ext {
+        lombokVersion = '1.18.26'
+        mapstructVersion = '1.5.5.Final'
+        springBootVersion = '3.0.6'
+        apacheCommonLang3Version = '3.12.0'
+    }
+}
 

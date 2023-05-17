@@ -55,9 +55,6 @@ public class KeycloakClientImpl implements KeycloakClient {
         userRepresentation.setFirstName(request.getFirstName());
         userRepresentation.setEnabled(true);
 
-        //TODO првоерка емейла
-        userRepresentation.setEmail(request.getEmail());
-        userRepresentation.setEmailVerified(true);
         return userRepresentation;
     }
 

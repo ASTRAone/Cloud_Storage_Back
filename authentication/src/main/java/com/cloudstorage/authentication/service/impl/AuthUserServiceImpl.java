@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import com.cloudstorage.authentication.client.KeycloakClient;
 import com.cloudstorage.authentication.dto.UserCreateRequest;
 import com.cloudstorage.authentication.exception.UnauthorizedException;
-import com.cloudstorage.authentication.service.UserService;
+import com.cloudstorage.authentication.service.AuthUserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +15,7 @@ import javax.ws.rs.core.Response;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class UserServiceImpl implements UserService {
+public class AuthUserServiceImpl implements AuthUserService {
     private final KeycloakClient keycloakClient;
 
     @Override

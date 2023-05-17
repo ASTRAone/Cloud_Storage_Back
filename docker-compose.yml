@@ -1,6 +1,29 @@
 version: '3'
 
 services:
+  postgres:
+    image: postgres:latest
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: keycloak
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
+  keycloak:
+    depends_on:
+      - postgres
+    container_name: local_keycloak
+    environment:
+      DB_VENDOR: postgres
+      DB_ADDR: postgres
+      DB_DATABASE: keycloak
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+    image: jboss/keycloak:latest
+    ports:
+      - "28080:8080"
+    restart: unless-stopped
   minio:
     image: minio/minio
     ports:
@@ -12,29 +35,6 @@ services:
       MINIO_ROOT_USER: admin
       MINIO_ROOT_PASSWORD: adminadmin
     command: server --console-address ":9001" /data
-  postgres:
-    image: postgres:13.2
-    restart: unless-stopped
-    environment:
-      POSTGRES_DB: keycloak
-      POSTGRES_USER: keycloak
-      POSTGRES_PASSWORD: keycloak
-    ports:
-      - "5432:5432"
-  keycloak:
-    depends_on:
-      - postgres
-    container_name: local_keycloak
-    environment:
-      DB_VENDOR: postgres
-      DB_ADDR: postgres
-      DB_DATABASE: keycloak
-      DB_USER: keycloak
-      DB_PASSWORD: keycloak
-    image: jboss/keycloak:latest
-    ports:
-      - "28080:8080"
-    restart: unless-stopped
 
 # Скрипт создания админского акка кейлока
 #  docker exec local_keycloak  /opt/jboss/keycloak/bin/add-user-keycloak.sh  -u admin  -p admin  && docker restart local_keycloak

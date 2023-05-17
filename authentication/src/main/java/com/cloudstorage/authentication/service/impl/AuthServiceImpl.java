@@ -9,7 +9,7 @@ import com.cloudstorage.authentication.dto.SignupRequest;
 import com.cloudstorage.authentication.dto.UserCreateRequest;
 import com.cloudstorage.authentication.service.AuthService;
 import com.cloudstorage.authentication.service.SessionManager;
-import com.cloudstorage.authentication.service.UserService;
+import com.cloudstorage.authentication.service.AuthUserService;
 import com.cloudstorage.common.processing.api.ProcessingResult;
 import com.cloudstorage.common.processing.impl.SimpleImmutableProcessingResult;
 import org.springframework.stereotype.Service;
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService {
     private final SessionManager sessionManager;
-    private final UserService userService;
+    private final AuthUserService userService;
 
     @Override
     public AuthResponse login(LoginRequest request) {
@@ -41,8 +41,7 @@ public class AuthServiceImpl implements AuthService {
 
     private UserCreateRequest prepareUserCreateRequest(SignupRequest request) {
         return UserCreateRequest.builder()
-                .email(request.getEmail())
-                .username(request.getUsername())
+                .username(request.getEmail())
                 .password(request.getPassword())
                 .firstName(request.getFio().getFirstName())
                 .lastName(request.getFio().getLastName())

@@ -21,7 +21,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @Configuration
 @EnableWebSecurity
-@ComponentScan("com.cloudstorage.authentication")
 public class WebSecurityConfig {
     @Value("${auth.public-urls:}")
     private List<String> publicUrls;
