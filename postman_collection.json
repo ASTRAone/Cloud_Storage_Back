@@ -1,0 +1,227 @@
+{
+  "info": {
+    "_postman_id": "42b6d52e-d141-430e-ba6a-41d2842429b2",
+    "name": "cloud",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "13601874",
+    "_collection_link": "https://www.postman.com/interstellar-spaceship-153941/workspace/cloud/collection/13601874-42b6d52e-d141-430e-ba6a-41d2842429b2?action=share&creator=13601874&source=collection_link"
+  },
+  "item": [
+    {
+      "name": "auth",
+      "item": [
+        {
+          "name": "signup",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\":\"test@mail.ru\",\r\n    \"fio\":{\r\n        \"firstName\": \"qwe\",\r\n        \"lastName\": \"qwe\"\r\n    },\r\n    \"password\": \"test\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:8080/api/v1/auth/signup",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "signup"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"password\": \"test\",\r\n    \"username\": \"test@mail.ru\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:8080/api/v1/auth/login",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "refresh",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"password\": \"test\",\r\n    \"username\": \"test@mail.ru\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:8080/api/v1/auth/login",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "keycloak token",
+          "request": {
+            "auth": {
+              "type": "awsv4",
+              "awsv4": [
+                {
+                  "key": "service",
+                  "value": "s3",
+                  "type": "string"
+                },
+                {
+                  "key": "secretKey",
+                  "value": "jgh1AInDHDyYfvOhgqahYH8OGIw2UGJH",
+                  "type": "string"
+                },
+                {
+                  "key": "accessKey",
+                  "value": "oh1AGUEA5F3zZRu4",
+                  "type": "string"
+                },
+                {
+                  "key": "region",
+                  "value": "ru",
+                  "type": "string"
+                },
+                {
+                  "key": "addAuthDataToQuery",
+                  "value": false,
+                  "type": "boolean"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "client_secret",
+                  "value": "TNIie3cfhiDL0gmwtLUMLifQecMesvLF",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "test",
+                  "type": "text"
+                },
+                {
+                  "key": "username",
+                  "value": "test",
+                  "type": "text"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials",
+                  "type": "text"
+                },
+                {
+                  "key": "client_id",
+                  "value": "cloud-storage",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:28080/auth/realms/cloud-storage/protocol/openid-connect/token",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "28080",
+              "path": [
+                "auth",
+                "realms",
+                "cloud-storage",
+                "protocol",
+                "openid-connect",
+                "token"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "user",
+      "item": [
+        {
+          "name": "user by uuid",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJELVNKTDVKQU5BcmpBT2dkVVB1UFVlYzdMSVJWQ1RVRzNtMHl0NHJFSE1vIn0.eyJleHAiOjE2ODQzNjA1OTYsImlhdCI6MTY4NDM2MDI5NiwianRpIjoiYmJlMzVjOWItNjM2Yi00ZTBhLWE0MGEtNTJlZTA2ZjI0ZTdiIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDoyODA4MC9hdXRoL3JlYWxtcy9jbG91ZC1zdG9yYWdlIiwiYXVkIjoiYWNjb3VudCIsInN1YiI6IjQ4ZGJjYjZiLWNhMWMtNGU4My1iMDViLWVmNjExNzNjODE2MyIsInR5cCI6IkJlYXJlciIsImF6cCI6ImNsb3VkLXN0b3JhZ2UiLCJzZXNzaW9uX3N0YXRlIjoiN2ZkODUxNjYtZDU2Ny00N2FkLThhYjctODI1OThhYzM2OTIxIiwiYWNyIjoiMSIsInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJkZWZhdWx0LXJvbGVzLWNsb3VkLXN0b3JhZ2UiLCJvZmZsaW5lX2FjY2VzcyIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJwcm9maWxlIGVtYWlsIiwic2lkIjoiN2ZkODUxNjYtZDU2Ny00N2FkLThhYjctODI1OThhYzM2OTIxIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJuYW1lIjoicXdlIHF3ZSIsInByZWZlcnJlZF91c2VybmFtZSI6InRlc3QyQG1haWwucnUiLCJnaXZlbl9uYW1lIjoicXdlIiwiZmFtaWx5X25hbWUiOiJxd2UifQ.cXLhmdS3J532-3Zn91jZ-fLIUtKIdo1LRX8U-Os9JyUCSq4_Qy84HzfCj0nh7P9AuQCHXZFr0wyXVjIdsVGh9qYncUe-_RiM3rYq7moOm6WMFmRJriq5-0q-Z5LU2urpKJv138lXVJcQEdM2ak-313knsynVv2RBNei4bTU2oe69sCwh5NOKIFYgQxcNHwqv3sy4pwEYOhewUEUmKCCnCVAfIem8aEtqoyV_4FbQoK36LhbQ7pAxoDYgp1gNn-He3DY_DctQbc6qJR6ZTnS5AG8HdhtJqBt3wDoImLyBjDBrzpJiRpNbRXo4LuEg-93MAGg_dPAxBvi_Trd-q8RY9g",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/user/f44068b5-1e3a-4655-b8fd-7ebbb2961aed",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "user",
+                "f44068b5-1e3a-4655-b8fd-7ebbb2961aed"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
