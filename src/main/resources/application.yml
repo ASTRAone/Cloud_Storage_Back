@@ -1,0 +1,36 @@
+server:
+  port: ${SERVER_PORT:8080}
+spring:
+  application:
+    name: cloud-storage
+  datasource:
+    url: jdbc:postgresql://${DB_POSTGRES_HOST:localhost}:${DB_POSTGRES_PORT:5433}/${DB_POSTGRES_NAME:user}
+    driver-class-name: org.postgresql.Driver
+    username: ${DB_POSTGRES_USERNAME:postgres}
+    password: ${DB_POSTGRES_PASSWORD:postgres}
+  jpa:
+    open-in-view: false
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc.lob.non_contextual_creation: true
+        types:
+          print:
+            banner: false
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${keycloak.server-url}/realms/${keycloak.realm}
+          jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
+auth:
+  public-urls: /api/v1/auth/login,/api/v1/auth/signup,/api/v1/auth/token/refresh
+
+keycloak:
+  server-url: ${KEYCLOAK_SERVER_URL:http://localhost:8989}
+  realm: ${KEYCLOAK_REALM:master}
+  resource: ${KEYCLOAK_RESOURCE:account}
+  client: ${KEYCLOAK_CLIENT:account}
+  credentials:
+    secret: ${KEYCLOAK_CREDENTIALS_SECRET:HntRm0CLSaF7Jd8E4gc9vgwlH2e4yQlA}
