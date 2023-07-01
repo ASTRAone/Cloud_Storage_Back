@@ -28,7 +28,7 @@ auth:
   public-urls: /api/v1/auth/login,/api/v1/auth/signup,/api/v1/auth/token/refresh
 
 keycloak:
-  server-url: ${KEYCLOAK_SERVER_URL:http://10.254.0.19:8989}
+  server-url: ${KEYCLOAK_SERVER_URL:http://localhost:8989}
   realm: ${KEYCLOAK_REALM:master}
   resource: ${KEYCLOAK_RESOURCE:account}
   client: ${KEYCLOAK_CLIENT:account}
