@@ -26,6 +26,7 @@ configurations {
     }
 }
 
+
 dependencies {
     compileOnly "org.projectlombok:lombok"
     annotationProcessor "org.projectlombok:lombok"
@@ -35,6 +36,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'io.awspring.cloud:spring-cloud-aws-starter-s3:3.0.1'
 
     implementation 'org.flywaydb:flyway-core'
     compileOnly 'org.projectlombok:lombok'

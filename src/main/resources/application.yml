@@ -24,6 +24,19 @@ spring:
         jwt:
           issuer-uri: ${keycloak.server-url}/realms/${keycloak.realm}
           jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
+  cloud:
+    aws:
+      credentials:
+        access-key: ${S3_ACCESS_KEY:efQ6ASj2wk3afuTWuAk7}
+        secret-key: ${S3_SECRET_KEY:gA60pNBlsaY0aNHAXH86wJvHQD97bJcjkc27qNGB}
+      s3:
+        bucket-name: ${S3_BUCKET_NAME:bpla}
+        endpoint: ${S3_URL:http://localhost:9000}
+      region:
+        static: ${S3_REGION:ru-1}
+  servlet:
+    multipart:
+      max-file-size: 10MB
 auth:
   public-urls: /api/v1/auth/login,/api/v1/auth/signup,/api/v1/auth/token/refresh
 
@@ -34,3 +47,5 @@ keycloak:
   client: ${KEYCLOAK_CLIENT:account}
   credentials:
     secret: ${KEYCLOAK_CREDENTIALS_SECRET:HntRm0CLSaF7Jd8E4gc9vgwlH2e4yQlA}
+s3:
+  bucketName: ${S3_BUCKET_NAME:3a4d5c4b-d8935681-88a7-4bc0-9bc0-3304f9eceac5}
