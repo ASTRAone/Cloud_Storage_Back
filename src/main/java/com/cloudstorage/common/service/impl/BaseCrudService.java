@@ -16,6 +16,9 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Collection;
+import java.util.List;
+
 import static java.util.Objects.isNull;
 
 @RequiredArgsConstructor(access = AccessLevel.PROTECTED)
@@ -30,6 +33,13 @@ public abstract class BaseCrudService<DTO, ENTITY extends EntityModel<ID>, ID> i
         return repository.findOne(UuidSpecification.hasUuid(uuid))
                 .map(this::prepareDto)
                 .orElseThrow(NotFoundException::new);
+    }
+
+    @Override
+    public List<DTO> findByUuids(Collection<String> uuids) {
+        return repository.findAll(UuidSpecification.hasUuid(uuids)).stream()
+                .map(this::prepareDto)
+                .toList();
     }
 
     @Override

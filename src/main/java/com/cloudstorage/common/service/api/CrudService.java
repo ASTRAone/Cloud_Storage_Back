@@ -2,6 +2,9 @@ package com.cloudstorage.common.service.api;
 
 import com.cloudstorage.common.processing.api.ProcessingResult;
 
+import java.util.Collection;
+import java.util.List;
+
 public interface CrudService<DTO> {
     DTO find(String uuid);
 
@@ -10,4 +13,6 @@ public interface CrudService<DTO> {
     ProcessingResult<DTO> update(DTO dto);
 
     void delete(String uuid);
+
+    List<DTO> findByUuids(Collection<String> uuids);
 }
