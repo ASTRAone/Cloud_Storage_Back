@@ -9,4 +9,9 @@ public class User {
     private Gender gender;
     private String email;
     private Integer age;
+    private String avatarUuid;
+    private UserStorage userStorage;
+    private String phoneNumber;
+    private String BIO;
+    private String address;
 }
