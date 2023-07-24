@@ -8,6 +8,7 @@ import com.cloudstorage.authentication.dto.TokenWrapper;
 import com.cloudstorage.authentication.service.AuthService;
 import com.cloudstorage.authentication.utils.TokenUtils;
 import com.cloudstorage.common.processing.api.ProcessingResult;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
+@Tag(name = "auth-api", description = "Public authentication api")
 public class AuthController {
     private final AuthService authService;
 

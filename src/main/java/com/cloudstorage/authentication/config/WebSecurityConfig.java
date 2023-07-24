@@ -41,7 +41,13 @@ public class WebSecurityConfig {
                 .cors(AbstractHttpConfigurer::disable)
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(registry -> registry.requestMatchers(preparePublicUrls()).permitAll().anyRequest().authenticated())
+                .authorizeHttpRequests(registry -> registry
+                        .requestMatchers(preparePublicUrls())
+                        .permitAll()
+                        .requestMatchers("/swagger-ui/*", "/v3/api-docs", "/v3/api-docs/*", "/api/internal/**")
+                        .permitAll()
+                        .anyRequest()
+                        .authenticated())
                 .oauth2ResourceServer(oauth -> oauth.jwt(Customizer.withDefaults()))
                 .build();
     }
